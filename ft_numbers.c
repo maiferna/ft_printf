@@ -65,13 +65,28 @@ int	ft_putnbr_hex(unsigned int n, char format)
 	return (count);
 }
 
-void	ft_print_hex(unsigned long n)
+static int	ft_ptr_hex(unsigned long n)
 {
+	int	count;
+
+	count = 0;
 	if (n >= 16)
-		ft_print_hex(n / 16);
-	ft_putchar("0123456789abcdef"[n % 16]);
+		count += ft_ptr_hex(n / 16);
+	count += ft_putchar("0123456789abcdef"[n % 16]);
+	return (count);
 }
-void	ft_print_ptr(void *ptr)
+
+int	ft_print_ptr(unsigned long ptr)
 {
-	
+	int	count;
+
+	count = 0;
+	if (ptr == 0)
+	{
+		write(1, "(nil)", 5);
+		return (5);
+	}
+	count += write(1, "0x", 2);
+	count += ft_ptr_hex(ptr);
+	return (count);
 }
