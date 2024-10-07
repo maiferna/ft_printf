@@ -22,7 +22,7 @@ int	format_handler(char character, va_list args)
 	else if (character == 's')
 		count += ft_putstr(va_arg(args, char *));
 	else if (character == 'p')
-		count += ft_ptr_hex(va_arg(args, void *));
+		count += ft_print_ptr(va_arg(args, unsigned long));
 	else if (character == 'd' || character == 'i')
 		count += ft_putnbr(va_arg(args, int));
 	else if (character == 'u')
